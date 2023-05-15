@@ -167,7 +167,7 @@ class Devtek
             $requestOptions[RequestOptions::QUERY]['regionId'] = $region;
         }
 
-        $requestOptions['json'] = array_merge($requestOptions['json'] ?? [], $this->getCredentials(static::CREDENTIALS_GROUP_WEBMASTER));
+        $requestOptions['json'] = array_merge($requestOptions[RequestOptions::JSON] ?? [], $this->getCredentials(static::CREDENTIALS_GROUP_WEBMASTER));
         $request = new Request('post', static::URI_CITIES . '/');
 
         $response = $this->query($request, $requestOptions);
