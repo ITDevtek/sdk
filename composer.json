@@ -1,0 +1,18 @@
+{
+    "name": "devtek-io/php-sdk",
+    "description": "Devtek API SDK for PHP",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "devtek\\sdk\\": "src/"
+        }
+    },
+    "minimum-stability": "stable",
+    "require": {
+        "php": ">=7.1",
+        "ext-curl": "*",
+        "ext-json": "*",
+        "psr/http-message": "^2.0"
+    }
+}
