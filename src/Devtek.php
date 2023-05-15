@@ -2,7 +2,10 @@
 
 namespace devtek\sdk;
 
-use devtek\sdk\exceptions\ValidationErrorException;
+use devtek\sdk\exceptions\{
+    ApiErrorException,
+    ValidationErrorException
+};
 use devtek\sdk\models\{
     City,
     Lead,
@@ -12,6 +15,7 @@ use GuzzleHttp\{
     Client,
     RequestOptions
 };
+use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Psr7\Request;
 use Psr\Http\Message\RequestInterface;
 
@@ -218,8 +222,24 @@ class Devtek
      */
     public function query(RequestInterface $request, array $requestOptions = []): Response
     {
-        $response = $this->client->send($request, $requestOptions);
-        return new Response($response);
+        $hasError = false;
+
+        try {
+            $response = $this->client->send($request, $requestOptions);
+        } catch (ClientException $e) {
+            $response = $e->getResponse();
+            $hasError = true;
+        }
+
+        $response = new Response($response);
+        if ($hasError) {
+            $error = $response->getErrors();
+            $error = array_shift($error);
+
+            throw new ApiErrorException($error, $response->original->getStatusCode());
+        }
+
+        return $response;
     }
 
     /**
