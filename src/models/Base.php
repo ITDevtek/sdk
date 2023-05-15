@@ -70,14 +70,6 @@ abstract class Base implements Model
     /**
      * {@inheritDoc}
      */
-    public function list(): array
-    {
-        return $this->fields;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     public function has(string $name): bool
     {
         return isset($this->fields[$name]);

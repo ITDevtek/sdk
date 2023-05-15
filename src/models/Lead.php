@@ -78,7 +78,26 @@ class Lead extends Base
     /**
      * Detailed form fields list
      */
-    protected const DETAILED_FIELDS = [];
+    protected const DETAILED_FIELDS = [
+        'passport_series',
+        'passport_number',
+        'passport_issued_date',
+        'passport_issued',
+        'passport_issued_code',
+        'registration_region',
+        'registration_city',
+        'registration_index',
+        'registration_street',
+        'registration_street_kladr',
+        'registration_city_kladr',
+        'registration_region_kladr',
+        'registration_house',
+        'registration_house_kladr',
+        'registration_housing',
+        'registration_housing_kladr',
+        'registration_apartment',
+        'deposit'
+    ];
 
     /**
      * Keyword that will be used to store job form data
@@ -91,7 +110,33 @@ class Lead extends Base
     protected const JOB_FIELDS = [];
 
     /**
+     * Returns lead data
+     *
+     * @return array
+     */
+    public function data(): array
+    {
+        $data = [];
+
+        foreach ($this->fields as $name => $value) {
+            $keyword = static::SHORT_KEYWORD;
+            if (in_array($name, static::DETAILED_FIELDS)) {
+                $keyword = static::DETAILED_KEYWORD;
+            } else if (in_array($name, static::JOB_FIELDS)) {
+                $keyword = static::JOB_KEYWORD;
+            }
+
+            if (!isset($data[$keyword])) {
+                $data[$keyword] = [];
+            }
+            $data[$keyword][$name] = $value;
+        }
+        return $data;
+    }
+
+    /**
      * {@inheritDoc}
+     * @throws ValidationErrorException On validation failure
      */
     public function validate(): bool
     {

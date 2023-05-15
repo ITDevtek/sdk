@@ -10,13 +10,6 @@ namespace devtek\sdk\interfaces;
 interface Model
 {
     /**
-     * Returns fields list as key-value pairs
-     *
-     * @return array
-     */
-    public function list(): array;
-
-    /**
      * Checks if field exists
      *
      * @param string $name Field name
