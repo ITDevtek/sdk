@@ -190,7 +190,6 @@ class Devtek
      * @param Lead $lead Lead
      * @param array $requestOptions Additional options that will be passed to request
      * @return integer|null Lead ID on success or `null` on failure
-     * @throws ValidationErrorException On lead validation failure
      */
     public function send(Lead $lead, array $requestOptions = []): ?int
     {
@@ -219,6 +218,7 @@ class Devtek
      * @param RequestInterface $request Request
      * @param array $requestOptions Request options
      * @return Response Response
+     * @throws ApiErrorException On API error
      */
     public function query(RequestInterface $request, array $requestOptions = []): Response
     {
