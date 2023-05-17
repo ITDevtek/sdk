@@ -2,6 +2,10 @@
 
 namespace devtek\sdk\models;
 
+use devtek\sdk\exceptions\ValidationErrorException;
+use devtek\sdk\helpers\Validator;
+use Exception;
+
 /**
  * Lead model
  *
@@ -110,6 +114,35 @@ class Lead extends Base
     protected const JOB_FIELDS = [];
 
     /**
+     * Validation rules
+     *
+     * Keys are field names and values are arrays with validator names
+     *
+     * If field has only one validator, array brackets can be skipped
+     *
+     * @var array[]|string[]
+     */
+    protected $validationRules = [
+        'last_name' => [Validator::CHECK_NAME, Validator::CHECK_RUSSIAN_NAME],
+        'first_name' => [Validator::CHECK_NAME, Validator::CHECK_RUSSIAN_NAME],
+        'middle_name' => [Validator::CHECK_NAME, Validator::CHECK_RUSSIAN_NAME],
+        'birthday' => Validator::DATE,
+        'phone' => Validator::PHONE_RUSSIAN,
+        'email' => Validator::EMAIL,
+        // 'region' => [], // TODO
+        // 'city' => [], // TODO
+        'amount' => Validator::INTEGER,
+        'credit_history' => Validator::CREDIT_HISTORY,
+        'sub_id1' => Validator::SUB_ID,
+        'sub_id2' => Validator::SUB_ID,
+        'sub_id3' => Validator::SUB_ID,
+        'sub_id4' => Validator::SUB_ID,
+        'sub_id5' => Validator::SUB_ID,
+        'passport_series' => Validator::PASSPORT_SERIES,
+        'passport_number' => Validator::PASSPORT_NUMBER
+    ];
+
+    /**
      * Returns lead data
      *
      * @return array
@@ -136,10 +169,32 @@ class Lead extends Base
 
     /**
      * {@inheritDoc}
+     * @return boolean Always `true`. If validation will fail or something else went wrong it will throw an exception
+     * @throws Exception If specified field validator not found
      * @throws ValidationErrorException On validation failure
      */
     public function validate(): bool
     {
-        return false;
+        foreach ($this->validationRules as $field => $rules) {
+            $value = $this->fields[$field] ?? null;
+            if (!is_array($rules)) {
+                $rules = [$rules];
+            }
+
+            foreach ($rules as $rule) {
+                $validator = Validator::get($rule);
+                if (is_null($validator)) {
+                    throw new Exception("Validator \"{$rule}\" not found");
+                }
+
+                $error = '';
+                $success = $validator($value, $error);
+                if (!$success) {
+                    throw new ValidationErrorException($field, $error, $value);
+                }
+            }
+        }
+
+        return true;
     }
 }

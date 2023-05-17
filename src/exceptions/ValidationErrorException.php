@@ -29,12 +29,14 @@ class ValidationErrorException extends Exception
      * Constructor
      *
      * @param string $field Field name
+     * @param string $error Error
      * @param mixed|null $value Value
      */
-    public function __construct(string $field, $value = null)
+    public function __construct(string $field, string $error, $value = null)
     {
         $this->field = $field;
         $this->value = $value;
+        $this->message = $error;
     }
 
     /**
