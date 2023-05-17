@@ -130,7 +130,7 @@ class Validator
         },
         self::PHONE_RUSSIAN => function ($value, &$error): bool {
             if (!preg_match('/^([+][0-9\s-\(\)]{11,13})*$/uis', $value)) {
-                $value = 'Invalid russian phone';
+                $error = 'Invalid russian phone';
                 return false;
             }
 
