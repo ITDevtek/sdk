@@ -193,8 +193,6 @@ class Devtek
      */
     public function send(Lead $lead, array $requestOptions = []): ?int
     {
-        $lead->validate();
-
         $requestOptions[RequestOptions::JSON] = array_merge(
             $this->getCredentials(static::CREDENTIALS_GROUP_WEBMASTER),
             $lead->data()
