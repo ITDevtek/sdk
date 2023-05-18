@@ -195,7 +195,7 @@ class Devtek
     {
         $requestOptions[RequestOptions::JSON] = array_merge(
             $this->getCredentials(static::CREDENTIALS_GROUP_WEBMASTER),
-            $lead->data()
+            ['data' => $lead->data()]
         );
         $request = new Request('post', static::URI_LEAD . '/');
 
