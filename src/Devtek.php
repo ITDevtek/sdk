@@ -2,10 +2,7 @@
 
 namespace devtek\sdk;
 
-use devtek\sdk\exceptions\{
-    ApiErrorException,
-    ValidationErrorException
-};
+use devtek\sdk\exceptions\ApiErrorException;
 use devtek\sdk\models\{
     City,
     Lead,
