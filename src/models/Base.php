@@ -82,14 +82,4 @@ abstract class Base implements Model
     {
         return !empty($this->fields[$name]);
     }
-
-    /**
-     * Validates model fields
-     *
-     * @return boolean `true` if all field values is valid or `false` if not
-     */
-    public function validate(): bool
-    {
-        return true;
-    }
 }

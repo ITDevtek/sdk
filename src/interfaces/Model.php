@@ -26,11 +26,4 @@ interface Model
      * @return boolean
      */
     public function filled(string $name): bool;
-
-    /**
-     * Validates field values
-     *
-     * @return boolean `true` if all field values is valid or `false` is not
-     */
-    public function validate(): bool;
 }
