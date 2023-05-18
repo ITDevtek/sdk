@@ -101,7 +101,7 @@ class Validator
      * @var callable[]
      */
     protected static $validators = [
-        /* self::CHECK_NAME => function ($value, &$error): bool {
+        self::CHECK_NAME => function ($value, &$error): bool {
             if (!is_string($value)) {
                 return false;
             }
@@ -116,23 +116,23 @@ class Validator
             }
 
             return true;
-        }, */
-        /* self::CHECK_RUSSIAN_NAME => function ($value, &$error): bool {
+        },
+        self::CHECK_RUSSIAN_NAME => function ($value, &$error): bool {
             if (!preg_match('/^[а-яА-ЯёЁ\-\s]+$/uis', $value)) {
                 $error = 'Value must contain only russian chars, dashes and spaces';
                 return false;
             }
 
             return true;
-        }, */
-        /* self::NUMERIC => function ($value, &$error): bool {
+        },
+        self::NUMERIC => function ($value, &$error): bool {
             if (!is_numeric($value)) {
                 $error = 'Value must be numeric';
                 return false;
             }
 
             return true;
-        }, */
+        },
         self::INTEGER => function ($value, &$error): bool {
             if (!is_integer($value)) {
                 $error = 'Value must be integer';
