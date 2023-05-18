@@ -2,10 +2,6 @@
 
 namespace devtek\sdk\models;
 
-use devtek\sdk\exceptions\ValidationErrorException;
-use devtek\sdk\helpers\Validator;
-use Exception;
-
 /**
  * Lead model
  *
