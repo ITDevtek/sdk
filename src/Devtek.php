@@ -224,6 +224,9 @@ class Devtek
         } catch (ClientException $e) {
             $response = $e->getResponse();
             $hasError = true;
+        } catch (ServerException $e) {
+            $response = $e->getResponse();
+            $hasError = true;
         }
 
         $response = new Response($response);
