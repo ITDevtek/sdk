@@ -228,10 +228,22 @@ class Devtek
 
         $response = new Response($response);
         if ($hasError) {
-            $error = $response->getErrors();
-            $error = array_shift($error);
+            $errors = $response->getErrors();
+            if (is_array($errors)) {
+                $error = array_shift($errors);
+            }
 
-            throw new ApiErrorException($error, $response->original->getStatusCode());
+            $message = '';
+            if (isset($error['message'])) {
+                $message = $error['message'];
+            } else {
+                $message = array_shift($error);
+            }
+
+            if (empty($message)) {
+                $message = 'Unknown error';
+            }
+            throw new ApiErrorException($message, $response->original->getStatusCode());
         }
 
         return $response;
