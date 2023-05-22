@@ -4,8 +4,60 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "29eda7043a733159314aa1661fd6a246",
+    "content-hash": "7c57ac3cda5b0cf678e3a72105f555a8",
     "packages": [
+        {
+            "name": "antalaron/mb-similar-text",
+            "version": "v1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/antalaron/mb-similar-text.git",
+                "reference": "95854e79c338eb5518fae47962effeb7dbeaa600"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/antalaron/mb-similar-text/zipball/95854e79c338eb5518fae47962effeb7dbeaa600",
+                "reference": "95854e79c338eb5518fae47962effeb7dbeaa600",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.9",
+                "symfony/polyfill-mbstring": "^1.5"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.0|^5.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/bootstrap.php"
+                ],
+                "psr-4": {
+                    "Antalaron\\MbSimilarText\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Antal Áron",
+                    "email": "antalaron@antalaron.hu"
+                }
+            ],
+            "description": "PHP similar_text() function for UTF-8",
+            "support": {
+                "issues": "https://github.com/antalaron/mb-similar-text/issues",
+                "source": "https://github.com/antalaron/mb-similar-text/tree/master"
+            },
+            "time": "2017-09-20T13:54:59+00:00"
+        },
         {
             "name": "guzzlehttp/guzzle",
             "version": "7.6.0",
@@ -332,6 +384,68 @@
             "time": "2023-04-17T16:11:26+00:00"
         },
         {
+            "name": "keinos/mb_levenshtein",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/KEINOS/mb_levenshtein.git",
+                "reference": "8927650e0338499d4f3a76a71a0b72cb116a25d9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/KEINOS/mb_levenshtein/zipball/8927650e0338499d4f3a76a71a0b72cb116a25d9",
+                "reference": "8927650e0338499d4f3a76a71a0b72cb116a25d9",
+                "shasum": ""
+            },
+            "require": {
+                "ext-mbstring": "*",
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "mb_levenshtein.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "KEINOS",
+                    "homepage": "https://github.com/KEINOS",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Luciole75w",
+                    "homepage": "https://www.php.net/manual/en/function.levenshtein.php#113702",
+                    "role": "Original Author"
+                },
+                {
+                    "name": "mpyw",
+                    "homepage": "https://qiita.com/mpyw/items/2b636827730e06c71e3d",
+                    "role": "Most influenced us on this script."
+                },
+                {
+                    "name": "THE CONTRIBUTORS",
+                    "homepage": "https://github.com/KEINOS/mb_levenshtein/graphs/contributors",
+                    "role": "Contributor"
+                }
+            ],
+            "description": "Levenshtein function with UTF-8 support.",
+            "homepage": "https://github.com/KEINOS/mb_levenshtein",
+            "keywords": [
+                "levenshtein",
+                "utf-8"
+            ],
+            "support": {
+                "issues": "https://github.com/KEINOS/mb_levenshtein/issues",
+                "source": "https://github.com/KEINOS/mb_levenshtein/tree/1.0.1"
+            },
+            "time": "2022-01-09T01:34:44+00:00"
+        },
+        {
             "name": "psr/http-client",
             "version": "1.0.2",
             "source": {
@@ -601,6 +715,89 @@
                 }
             ],
             "time": "2023-03-01T10:25:55+00:00"
+        },
+        {
+            "name": "symfony/polyfill-mbstring",
+            "version": "v1.27.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/polyfill-mbstring.git",
+                "reference": "8ad114f6b39e2c98a8b0e3bd907732c207c2b534"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/8ad114f6b39e2c98a8b0e3bd907732c207c2b534",
+                "reference": "8ad114f6b39e2c98a8b0e3bd907732c207c2b534",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1"
+            },
+            "provide": {
+                "ext-mbstring": "*"
+            },
+            "suggest": {
+                "ext-mbstring": "For best performance"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-main": "1.27-dev"
+                },
+                "thanks": {
+                    "name": "symfony/polyfill",
+                    "url": "https://github.com/symfony/polyfill"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "bootstrap.php"
+                ],
+                "psr-4": {
+                    "Symfony\\Polyfill\\Mbstring\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nicolas Grekas",
+                    "email": "p@tchwork.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony polyfill for the Mbstring extension",
+            "homepage": "https://symfony.com",
+            "keywords": [
+                "compatibility",
+                "mbstring",
+                "polyfill",
+                "portable",
+                "shim"
+            ],
+            "support": {
+                "source": "https://github.com/symfony/polyfill-mbstring/tree/v1.27.0"
+            },
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2022-11-03T14:55:06+00:00"
         }
     ],
     "packages-dev": [],
