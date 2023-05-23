@@ -14,7 +14,6 @@
         "ext-curl": "*",
         "ext-json": "*",
         "guzzlehttp/guzzle": "^7.6",
-        "keinos/mb_levenshtein": "^1.0",
         "antalaron/mb-similar-text": "^1.0"
     }
 }
