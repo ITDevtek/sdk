@@ -375,8 +375,10 @@ class Devtek
             $message = '';
             if (isset($error['message'])) {
                 $message = $error['message'];
-            } else {
+            } else if (is_array($error)) {
                 $message = array_shift($error);
+            } else {
+                $message = $error;
             }
 
             if (empty($message)) {
