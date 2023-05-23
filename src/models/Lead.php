@@ -14,6 +14,8 @@ namespace devtek\sdk\models;
  * @property string|null $email Email
  * @property string|null $region Actual region
  * @property string|null $city Actual city
+ * @property integer|null $region_id Actual region ID
+ * @property integer|null $city_id Actual city ID
  * @property integer|null $amount Amount
  * @property integer|null $credit_history Credit history
  * @property string|null $sub_id1 Sub 1
@@ -59,8 +61,8 @@ class Lead extends Base
         'birthday',
         'phone',
         'email',
-        'region',
-        'city',
+        'registration_region',
+        'registration_city',
         'amount',
         'credit_history',
         'sub_id1',
@@ -122,6 +124,12 @@ class Lead extends Base
             $keyword = static::SHORT_KEYWORD;
             if (in_array($name, static::DETAILED_FIELDS)) {
                 $keyword = static::DETAILED_KEYWORD;
+
+                if ($name == 'region_id') {
+                    $name = 'registration_region';
+                } else if ($name == 'city_id') {
+                    $name = 'registration_city';
+                }
             } else if (in_array($name, static::JOB_FIELDS)) {
                 $keyword = static::JOB_KEYWORD;
             }
