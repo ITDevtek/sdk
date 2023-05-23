@@ -2,7 +2,10 @@
 
 namespace devtek\sdk;
 
-use devtek\sdk\exceptions\ApiErrorException;
+use devtek\sdk\exceptions\{
+    ApiErrorException,
+    ApiServerErrorException
+};
 use devtek\sdk\models\{
     City,
     Lead,
@@ -219,11 +222,19 @@ class Devtek
     public function send(Lead $lead, array $requestOptions = []): ?int
     {
         if ($lead->filled('region') && !$lead->filled('region_id')) {
-            $lead->region_id = $this->findRegion($lead->region);
+            $region = $this->findRegion($lead->region);
+            if ($region instanceof Region) {
+                $lead->region_id = $region->region_id;
+            }
         }
         if ($lead->filled('city') && !$lead->filled('city_id')) {
-            $lead->city_id = $this->findCity($lead->city, $lead->region_id);
+            $city = $this->findCity($lead->city, $lead->region_id);
+            if ($city instanceof City) {
+                $lead->city_id = $city->city_id;
+            }
         }
+
+        var_dump(json_encode($lead->data()));
 
         $requestOptions[RequestOptions::JSON] = array_merge(
             $this->getCredentials(static::CREDENTIALS_GROUP_WEBMASTER),
@@ -349,7 +360,8 @@ class Devtek
      * @param RequestInterface $request Request
      * @param array $requestOptions Request options
      * @return Response Response
-     * @throws ApiErrorException On API error
+     * @throws ApiErrorException On API client error
+     * @throws ApiServerErrorException On API server error
      */
     public function query(RequestInterface $request, array $requestOptions = []): Response
     {
@@ -384,7 +396,12 @@ class Devtek
             if (empty($message)) {
                 $message = 'Unknown error';
             }
-            throw new ApiErrorException($message, $response->original->getStatusCode());
+
+            $status = $response->original->getStatusCode();
+            if ($status >= 500) {
+                throw new ApiServerErrorException($message, $status);
+            }
+            throw new ApiErrorException($message, $status);
         }
 
         return $response;
