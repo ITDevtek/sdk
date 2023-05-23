@@ -122,9 +122,9 @@ class Lead extends Base
 
         foreach ($this->fields as $name => $value) {
             $keyword = static::SHORT_KEYWORD;
-            if ($name == 'region_id') {
+            if (in_array($name, ['region', 'region_id'])) {
                 $name = 'registration_region';
-            } else if ($name == 'city_id') {
+            } else if (in_array($name, ['city', 'city_id'])) {
                 $name = 'registration_city';
             }
 
