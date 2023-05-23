@@ -234,8 +234,6 @@ class Devtek
             }
         }
 
-        var_dump(json_encode($lead->data()));
-
         $requestOptions[RequestOptions::JSON] = array_merge(
             $this->getCredentials(static::CREDENTIALS_GROUP_WEBMASTER),
             ['data' => $lead->data()]
