@@ -177,7 +177,7 @@ class Devtek
     /**
      * Returns list of cities
      *
-     * @param Region|integer $region Region model or its ID
+     * @param Region|integer|null $region Region model or its ID
      * @param array $requestOptions Additional options that will be passed to request
      * @return City[] Cities list or empty array if request was unsuccessful
      */
@@ -218,6 +218,13 @@ class Devtek
      */
     public function send(Lead $lead, array $requestOptions = []): ?int
     {
+        if ($lead->filled('region') && !$lead->filled('region_id')) {
+            $lead->region_id = $this->findRegion($lead->region);
+        }
+        if ($lead->filled('city') && !$lead->filled('city_id')) {
+            $lead->city_id = $this->findCity($lead->city, $lead->region_id);
+        }
+
         $requestOptions[RequestOptions::JSON] = array_merge(
             $this->getCredentials(static::CREDENTIALS_GROUP_WEBMASTER),
             ['data' => $lead->data()]
@@ -309,15 +316,16 @@ class Devtek
      * This method work with cities list from API
      *
      * @param string $name City name
+     * @param Region|integer|null $region Region
      * @return City|null City or `null` if city not found
      */
-    public function findCity(string $name): ?City
+    public function findCity(string $name, $region = null): ?City
     {
         $name = mb_strtolower($name);
         $result = null;
 
         $maxPercent = 0;
-        $cities = $this->cities();
+        $cities = $this->cities($region);
         foreach ($cities as $city) {
             $cityName = mb_strtolower($city->name);
             if ($name === $cityName) {
