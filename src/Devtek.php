@@ -60,12 +60,12 @@ class Devtek
     const CREDENTIAL_WEBMASTER_ID = 'webmasterId';
 
     /**
-     * Credential: Webmaster ID
+     * Credential: Webmaster token
      */
     const CREDENTIAL_WEBMASTER_TOKEN = 'webmasterToken';
 
     /**
-     * Credential: Webmaster ID
+     * Credential: Company token
      */
     const CREDENTIAL_COMPANY_TOKEN = 'companyToken';
 
@@ -139,7 +139,7 @@ class Devtek
      *
      * @param string $credential Credential name _(refers to `CREDENTIAL` constants)_
      * @param mixed $value Credential value
-     * @return boolean
+     * @return boolean `true` on success or `false` on failure
      */
     public function setCredential(string $credential, $value): bool
     {
