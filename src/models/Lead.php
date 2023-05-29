@@ -41,6 +41,20 @@ namespace devtek\sdk\models;
  * @property string|null $registration_housing_kladr Registration housing KLADR code
  * @property string|null $registration_apartment Registration apartment
  * @property integer|null $deposit Deposit
+ * @property string|null $job_region Job region
+ * @property string|null $job_city Job city
+ * @property string|null $job_street Job street
+ * @property string|null $job_house Job house
+ * @property string|null $job_housing Job housing
+ * @property string|null $job_region_kladr Job region KLADR code
+ * @property string|null $job_city_kladr Job city KLADR code
+ * @property string|null $job_street_kladr Job street KLADR code
+ * @property string|null $job_place Job place
+ * @property integer|null $job_monthly_income Job monthly income
+ * @property integer|null $job_experience Job experience
+ * @property string|null $job_phone Job phone
+ * @property integer|null $job_employment Job employment type
+ * @property string|null $job_position Job position
  * @version 1.0.0
  */
 class Lead extends Base
