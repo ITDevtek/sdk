@@ -109,7 +109,22 @@ class Lead extends Base
     /**
      * Job form fields list
      */
-    protected const JOB_FIELDS = [];
+    protected const JOB_FIELDS = [
+        'job_region',
+        'job_city',
+        'job_street',
+        'job_house',
+        'job_housing',
+        'job_region_kladr',
+        'job_city_kladr',
+        'job_street_kladr',
+        'job_place',
+        'job_monthly_income',
+        'job_experience',
+        'job_phone',
+        'job_employment',
+        'job_position'
+    ];
 
     /**
      * Returns lead data
@@ -132,6 +147,9 @@ class Lead extends Base
                 $name = 'registration_region';
             } else if (in_array($name, ['city', 'city_id'])) {
                 $name = 'registration_city';
+            }
+            if (substr($name, 0, 3) === static::JOB_KEYWORD) {
+                $name = substr($name, 4);
             }
 
             if (!isset($data[$keyword])) {
