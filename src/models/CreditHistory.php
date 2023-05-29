@@ -2,12 +2,14 @@
 
 namespace devtek\sdk\models;
 
+use devtek\sdk\interfaces\Listable;
+
 /**
  * Credit history model
  *
  * @version 1.0.0
  */
-class CreditHistory extends Base
+class CreditHistory extends Base implements Listable
 {
     /**
      * Credit history: Never took loans
