@@ -18,6 +18,7 @@ namespace devtek\sdk\models;
  * @property integer|null $city_id Actual city ID
  * @property integer|null $amount Amount
  * @property integer|null $credit_history Credit history
+ * @property string|null $channel Channel
  * @property string|null $sub_id1 Sub 1
  * @property string|null $sub_id2 Sub 2
  * @property string|null $sub_id3 Sub 3
