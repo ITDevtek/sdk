@@ -80,6 +80,7 @@ class Lead extends Base
         'registration_city',
         'amount',
         'credit_history',
+        'channel',
         'sub_id1',
         'sub_id2',
         'sub_id3',
