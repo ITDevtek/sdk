@@ -64,7 +64,11 @@ abstract class Base implements Model
      */
     public function __get($name)
     {
-        return $this->fields[$name] ?: null;
+        if (array_key_exists($name, $this->fields)) {
+            return $this->fields[$name];
+        } else {
+            return null;
+        }
     }
 
     /**
