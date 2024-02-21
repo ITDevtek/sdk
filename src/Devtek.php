@@ -221,16 +221,18 @@ class Devtek
      */
     public function send(Lead $lead, array $requestOptions = []): ?int
     {
-        if ($lead->filled('region') && !$lead->filled('region_id')) {
-            $region = $this->findRegion($lead->region);
-            if ($region instanceof Region) {
-                $lead->region_id = $region->region_id;
+        if (!$lead->filled('kladr')) {
+            if ($lead->filled('region') && !$lead->filled('region_id')) {
+                $region = $this->findRegion($lead->region);
+                if ($region instanceof Region) {
+                    $lead->region_id = $region->region_id;
+                }
             }
-        }
-        if ($lead->filled('city') && !$lead->filled('city_id')) {
-            $city = $this->findCity($lead->city, $lead->region_id);
-            if ($city instanceof City) {
-                $lead->city_id = $city->city_id;
+            if ($lead->filled('city') && !$lead->filled('city_id')) {
+                $city = $this->findCity($lead->city, $lead->region_id);
+                if ($city instanceof City) {
+                    $lead->city_id = $city->city_id;
+                }
             }
         }
 
