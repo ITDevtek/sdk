@@ -6,11 +6,7 @@ use devtek\sdk\exceptions\{
     ApiErrorException,
     ApiServerErrorException
 };
-use devtek\sdk\models\{
-    City,
-    Lead,
-    Region
-};
+use devtek\sdk\models\{Base, City, Lead, Region};
 use GuzzleHttp\{
     Client,
     RequestOptions
@@ -219,7 +215,7 @@ class Devtek
      * @param array $requestOptions Additional options that will be passed to request
      * @return integer|null Lead ID on success or `null` on failure
      */
-    public function send(Lead $lead, array $requestOptions = []): ?int
+    public function send(Base $lead, array $requestOptions = []): ?int
     {
         if (!$lead->filled('kladr')) {
             if ($lead->filled('region') && !$lead->filled('region_id')) {
