@@ -211,7 +211,7 @@ class Devtek
     /**
      * Sends lead
      *
-     * @param Lead $lead Lead
+     * @param Base $lead BaseLead
      * @param array $requestOptions Additional options that will be passed to request
      * @return integer|null Lead ID on success or `null` on failure
      */
