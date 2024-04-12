@@ -70,7 +70,7 @@ class Devtek
      *
      * @var string
      */
-    protected $endpoint = 'https://api.devtek.io';
+    protected $endpoint = 'https://api.devtek.ru';
 
     /**
      * HTTP client
