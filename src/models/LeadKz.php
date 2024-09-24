@@ -46,6 +46,7 @@ class LeadKz extends Base
         'phone',
         'email',
         'iin',
+        'passport_number',
         'registration_region',
         'registration_city',
         'amount',
